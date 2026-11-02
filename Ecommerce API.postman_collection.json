@@ -1,0 +1,1320 @@
+{
+  "info": {
+    "_postman_id": "2687c0d8-387b-42cf-babf-db4771fe4c62",
+    "name": "Ecommerce API",
+    "description": "Postman collection covering all endpoints for ProductsController.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "59278760"
+  },
+  "item": [
+    {
+      "name": "Products_endpoints",
+      "item": [
+        {
+          "name": "Normal Cases",
+          "item": [
+            {
+              "name": "Create Product",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Wireless Gaming Mouse\",\n  \"sku\": \"MS-WRL-001\",\n  \"price\": 49.99,\n  \"stockQuantity\": 150,\n  \"isActive\": true,\n  \"categoryId\": 1,\n  \"salesIds\": [101, 102]\n}"
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/Products",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "Products"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Get Product By ID",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/Products/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "Products",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "1",
+                      "description": "Target Product ID"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Update Product",
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": 1,\n  \"name\": \"Wireless Gaming Mouse Pro\",\n  \"sku\": \"MS-WRL-001-PRO\",\n  \"price\": 59.99,\n  \"stockQuantity\": 200,\n  \"isActive\": true,\n  \"categoryId\": 1,\n  \"salesIds\": [101, 102]\n}"
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/Products/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "Products",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "1",
+                      "description": "Target Product ID"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Delete Product",
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/Products/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "Products",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "1",
+                      "description": "Target Product ID"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Get Products (Paginated & Filtered)",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/Products?PageIndex=0&PageSize=10&SortColumn=Id&SortOrder=DESC&FilterQuery=",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "Products"
+                  ],
+                  "query": [
+                    {
+                      "key": "PageIndex",
+                      "value": "0",
+                      "description": "Page index (0-based)"
+                    },
+                    {
+                      "key": "PageSize",
+                      "value": "10",
+                      "description": "Items per page (Range: 1-20)"
+                    },
+                    {
+                      "key": "SortColumn",
+                      "value": "Id",
+                      "description": "Column to sort by"
+                    },
+                    {
+                      "key": "SortOrder",
+                      "value": "DESC",
+                      "description": "ASC or DESC"
+                    },
+                    {
+                      "key": "FilterQuery",
+                      "value": "",
+                      "description": "Filter string"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "Validation & Edge Cases",
+          "item": [
+            {
+              "name": "GET - PageSize Exceeds Max (PageSize = 25)",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/Products?PageIndex=0&PageSize=25&SortColumn=Name&SortOrder=ASC",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "Products"
+                  ],
+                  "query": [
+                    {
+                      "key": "PageIndex",
+                      "value": "0"
+                    },
+                    {
+                      "key": "PageSize",
+                      "value": "25",
+                      "description": "Fails [Range(1, 20)] on PageSize -> Should return 400 Bad Request"
+                    },
+                    {
+                      "key": "SortColumn",
+                      "value": "Name"
+                    },
+                    {
+                      "key": "SortOrder",
+                      "value": "ASC"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "GET - Invalid SortColumn (SQL Injection / Non-Existent Column)",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/Products?PageIndex=0&PageSize=10&SortColumn=InvalidColumnName;DROP TABLE Products;&SortOrder=ASC",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "Products"
+                  ],
+                  "query": [
+                    {
+                      "key": "PageIndex",
+                      "value": "0"
+                    },
+                    {
+                      "key": "PageSize",
+                      "value": "10"
+                    },
+                    {
+                      "key": "SortColumn",
+                      "value": "InvalidColumnName;DROP TABLE Products;",
+                      "description": "Fails SortColumnValidatorAttribute -> Should return 400 Bad Request"
+                    },
+                    {
+                      "key": "SortOrder",
+                      "value": "ASC"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "GET - Invalid SortOrder (Neither ASC nor DESC)",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/Products?PageIndex=0&PageSize=10&SortColumn=Name&SortOrder=INVALID_ORDER",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "Products"
+                  ],
+                  "query": [
+                    {
+                      "key": "PageIndex",
+                      "value": "0"
+                    },
+                    {
+                      "key": "PageSize",
+                      "value": "10"
+                    },
+                    {
+                      "key": "SortColumn",
+                      "value": "Name"
+                    },
+                    {
+                      "key": "SortOrder",
+                      "value": "INVALID_ORDER",
+                      "description": "Fails [SortOrderValidator] -> Should return 400 Bad Request"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "GET By ID - Non-Existent ID (404)",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/Products/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "Products",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "999999",
+                      "description": "Out of range ID -> Should return 404 Not Found"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "POST - Missing Required Fields (Name & Sku)",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"price\": 10.00,\n  \"stockQuantity\": 5\n}"
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/Products",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "Products"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "POST - Name & Sku Exceed MaxLength (> 50 chars)",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\",\n  \"sku\": \"BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB\",\n  \"price\": 29.99,\n  \"stockQuantity\": 10\n}"
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/Products",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "Products"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "POST - Negative Price & StockQuantity",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Invalid Price Product\",\n  \"sku\": \"INV-001\",\n  \"price\": -15.50,\n  \"stockQuantity\": -50\n}"
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/Products",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "Products"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "PUT - Missing Required ProductDTO.Id",
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Missing ID Body Product\",\n  \"sku\": \"NO-ID-001\",\n  \"price\": 19.99\n}"
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/Products/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "Products",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "1",
+                      "description": "Route ID present, but body missing Required Id property"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "PUT - Route ID vs Body ID Mismatch",
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": 99,\n  \"name\": \"ID Mismatch Product\",\n  \"sku\": \"MISMATCH-001\",\n  \"price\": 19.99\n}"
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/Products/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "Products",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "1",
+                      "description": "Route ID = 1, Body ID = 99"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "DELETE - Invalid ID Format (Non-Integer)",
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/Products/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "Products",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "abc",
+                      "description": "Fails :int constraint -> Should return 404 or 400"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Categories_endpoints",
+      "item": [
+        {
+          "name": "Normal Cases",
+          "item": [
+            {
+              "name": "Get Categories (Paginated & Filtered)",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/Categories?PageIndex=0&PageSize=10&SortColumn=Name&SortOrder=ASC&FilterQuery=",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "Categories"
+                  ],
+                  "query": [
+                    {
+                      "key": "PageIndex",
+                      "value": "0",
+                      "description": "Page index (0-based)"
+                    },
+                    {
+                      "key": "PageSize",
+                      "value": "10",
+                      "description": "Items per page (Range: 1-20)"
+                    },
+                    {
+                      "key": "SortColumn",
+                      "value": "Name",
+                      "description": "Column to sort by"
+                    },
+                    {
+                      "key": "SortOrder",
+                      "value": "ASC",
+                      "description": "ASC or DESC"
+                    },
+                    {
+                      "key": "FilterQuery",
+                      "value": "",
+                      "description": "Filter string"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Get Category By ID",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/Categories/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "Categories",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "1",
+                      "description": "Target Category ID"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Create Category",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Electronics\",\n  \"slug\": \"electronics\",\n  \"parentId\": null\n}"
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/Categories",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "Categories"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Update Category",
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": 1,\n  \"name\": \"Consumer Electronics\",\n  \"slug\": \"consumer-electronics\",\n  \"parentId\": null\n}"
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/Categories/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "Categories",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "1",
+                      "description": "Target Category ID"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Delete Category",
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/Categories/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "Categories",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "1",
+                      "description": "Target Category ID"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "Validation & Edge Cases",
+          "item": [
+            {
+              "name": "GET By ID - Invalid Non-Integer ID Route Constraint",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/Categories/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "Categories",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "invalid-id-string",
+                      "description": "Should return 400 Bad Request during parameter binding"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "POST - Missing Required Fields (Name & Slug)",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"parentId\": 1\n}"
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/Categories",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "Categories"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "POST - Name & Slug Exceed MaxLength (> 50 chars)",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\",\n  \"slug\": \"bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb\",\n  \"parentId\": null\n}"
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/Categories",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "Categories"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "PUT - Missing Nullable Id (Triggers [Required] on CategoryDTO.Id)",
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Smartphones\",\n  \"slug\": \"smartphones\"\n}"
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/Categories/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "Categories",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "1",
+                      "description": "CategoryDTO.Id is int? with [Required], so omitting 'id' triggers 400 Bad Request"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "PUT - Route ID vs Body ID Mismatch",
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": 99,\n  \"name\": \"Category Mismatch\",\n  \"slug\": \"category-mismatch\"\n}"
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/Categories/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "Categories",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "1",
+                      "description": "Route ID = 1, Body ID = 99"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Sales_endpoints",
+      "item": [
+        {
+          "name": "Normal Cases",
+          "item": [
+            {
+              "name": "Get Sales (Paginated & Filtered)",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/Sales?PageIndex=0&PageSize=10&SortColumn=TotalPrice&SortOrder=DESC&FilterQuery=",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "Sales"
+                  ],
+                  "query": [
+                    {
+                      "key": "PageIndex",
+                      "value": "0",
+                      "description": "Page index (0-based)"
+                    },
+                    {
+                      "key": "PageSize",
+                      "value": "10",
+                      "description": "Items per page (Range: 1-20)"
+                    },
+                    {
+                      "key": "SortColumn",
+                      "value": "TotalPrice",
+                      "description": "Column to sort by"
+                    },
+                    {
+                      "key": "SortOrder",
+                      "value": "DESC",
+                      "description": "ASC or DESC"
+                    },
+                    {
+                      "key": "FilterQuery",
+                      "value": "",
+                      "description": "Filter string"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Get Sale By ID",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/Sales/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "Sales",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "1",
+                      "description": "Target Sale ID"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Create Sale",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"quantity\": 2,\n  \"unitPrice\": 49.99,\n  \"totalPrice\": 99.98,\n  \"productsIds\": [1, 2]\n}"
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/Sales",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "Sales"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Update Sale",
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": 1,\n  \"quantity\": 3,\n  \"unitPrice\": 49.99,\n  \"totalPrice\": 149.97,\n  \"productsIds\": [1, 2, 3]\n}"
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/Sales/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "Sales",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "1",
+                      "description": "Target Sale ID"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Delete Sale",
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/Sales/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "Sales",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "1",
+                      "description": "Target Sale ID"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "Validation & Edge Cases",
+          "item": [
+            {
+              "name": "POST - Negative Quantity, UnitPrice, and TotalPrice",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"quantity\": -5,\n  \"unitPrice\": -10.00,\n  \"totalPrice\": -50.00\n}"
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/Sales",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "Sales"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "PUT - Missing Nullable Id (Triggers [Required] on SaleDTO.Id)",
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"quantity\": 10,\n  \"unitPrice\": 15.00,\n  \"totalPrice\": 150.00\n}"
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/Sales/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "Sales",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "1",
+                      "description": "SaleDTO.Id is int? with [Required], so omitting 'id' triggers 400 Bad Request"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "PUT - Route ID vs Body ID Mismatch",
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": 999,\n  \"quantity\": 1,\n  \"unitPrice\": 10.00,\n  \"totalPrice\": 10.00\n}"
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/Sales/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "Sales",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "1",
+                      "description": "Route ID = 1, Body ID = 999"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "GET - Exceeds PageSize Bound (PageSize = 50)",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/Sales?PageIndex=0&PageSize=50&SortColumn=TotalPrice&SortOrder=ASC",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "Sales"
+                  ],
+                  "query": [
+                    {
+                      "key": "PageIndex",
+                      "value": "0"
+                    },
+                    {
+                      "key": "PageSize",
+                      "value": "50",
+                      "description": "Fails [Range(1, 20)] -> Triggers 400 Bad Request"
+                    },
+                    {
+                      "key": "SortColumn",
+                      "value": "TotalPrice"
+                    },
+                    {
+                      "key": "SortOrder",
+                      "value": "ASC"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "GET By ID - Non-Integer Parameter Failure",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/Sales/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "Sales",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "invalid-id",
+                      "description": "Non-integer value passed to int route parameter"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://localhost:7001"
+    }
+  ]
+}
