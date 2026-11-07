@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace EcommerceApi.DTO.Product;
 
-public class SaleCreateDTO
+public class ProductCreateDTO
 {
     [Required]
     [MaxLength(50)]

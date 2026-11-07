@@ -2,7 +2,7 @@
 
 namespace EcommerceApi.DTO.Product;
 
-public class SaleDTO
+public class ProductDTO
 {
     [Required]
     public int? Id { get; set; }

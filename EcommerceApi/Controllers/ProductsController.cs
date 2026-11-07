@@ -29,7 +29,7 @@ public class ProductsController : ControllerBase
     [HttpGet(Name = "GetProducts")]
     [ResponseCache(Location = ResponseCacheLocation.Any, Duration = 60)]
     public async Task<ActionResult<RestDTO<Product[]>>> Get(
-        [FromQuery] RequestDTO<SaleDTO> requestDTO)
+        [FromQuery] RequestDTO<ProductDTO> requestDTO)
     {
         var query = _dbContext.Products
             .AsNoTracking()
@@ -71,7 +71,7 @@ public class ProductsController : ControllerBase
     [HttpPost(Name = "CreateProduct")]
     [ResponseCache(NoStore = true)]
     public async Task<ActionResult<RestDTO<Product?>>> Post(
-        SaleCreateDTO model)
+        ProductCreateDTO model)
     {
         bool skuExists = await _dbContext.Products.AnyAsync(p => p.Sku == model.Sku);
         if (skuExists)
@@ -149,7 +149,7 @@ public class ProductsController : ControllerBase
     // PUT: api/Products/5
     [HttpPut("{id:int}", Name = "UpdateProduct")]
     [ResponseCache(NoStore = true)]
-    public async Task<ActionResult<RestDTO<Product>>> Update(int id, [FromBody] SaleDTO model)
+    public async Task<ActionResult<RestDTO<Product>>> Update(int id, [FromBody] ProductDTO model)
     {
         if (id != model.Id)
             return Problem(
